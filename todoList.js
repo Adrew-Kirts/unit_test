@@ -65,7 +65,6 @@ export function markItemDone(id) {
 }
 
 export function markAllItemsDone() {
-
     items.forEach(item => {
         item.status = true;
     });

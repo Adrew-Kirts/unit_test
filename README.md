@@ -37,3 +37,13 @@ Un test est quelque chose qui permet d'affirmer un résultat connu à l'avance
     - Test driven developpement (écrire les tests avant le code)
 
 
+# How to setup CI with Vitest and GHA
+
+1. Go to GitHub actions and chose the node.js template -> template is created
+2. Chose node version [16.x]
+3. Add: 
+      - run: npm ci
+      - run: npm run test:unit
+4. Save and commit file
+
+
