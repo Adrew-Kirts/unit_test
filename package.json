@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@vitest/coverage-istanbul": "^0.34.6",
     "@vitest/ui": "^0.34.6",
     "vitest": "^0.34.6"
   }

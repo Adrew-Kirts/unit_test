@@ -1,5 +1,13 @@
 let items = [];
 
+export function getItems() {
+    return items;
+}
+
+export function setItems(newItems) {
+    items = newItems;
+}
+
 export function addItem(label) {
     if (!label) {
         return 'Please add a message to your item';
@@ -29,15 +37,40 @@ export function deleteItem(id) {
 }
 
 export function editItem(id, newLabel) {
+
+    const item = items.find(o => o.id === id);
+    if (!item) {
+        return "Item not found";
+    }
+    if (!newLabel) {
+        return "Please add a new label to your item";
+    }
+    if (newLabel.length > 255) {
+        newLabel = newLabel.slice(0, 255);
+    }
+    const objWithIdIndex = items.findIndex((obj) => obj.id === id);
+    items[objWithIdIndex].label = newLabel;
+    return items[objWithIdIndex];
 }
 
-export function markItemDone() {
+export function markItemDone(id) {
+
+    const item = items.find(o => o.id === id);
+    if (!item) {
+        return "Item not found";
+    }
+    const objWithIdIndex = items.findIndex((obj) => obj.id === id);
+    items[objWithIdIndex].status = true;
+    return "Item marked as done";
 }
 
 export function markAllItemsDone() {
+
+    items.forEach(item => {
+        item.status = true;
+    });
+    return "All items marked as done";
+
 }
-
-
-
 
 

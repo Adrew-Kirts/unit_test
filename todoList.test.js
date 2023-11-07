@@ -1,9 +1,10 @@
 import {describe, it, expect, beforeEach} from 'vitest';
-import { addItem, deleteItem, editItem, markItemDone, markAllItemsDone } from './todoList.js';
+import { addItem, deleteItem, editItem, markItemDone, markAllItemsDone, getItems, setItems } from './todoList.js';
 
-let items = [];
+// let items = [];
+
 beforeEach(() => {
-  items = [];
+  setItems([]);
 });
 
 describe('addItem function', () => {
@@ -44,7 +45,7 @@ describe('deleteItem function', () => {
     const id = 1;
     const result = deleteItem(id);
     expect(result).toBe("Item deleted");
-    expect(!items.find(o => o.id === id));
+    expect(!getItems().find(o => o.id === id));
   });
 });
 
@@ -84,7 +85,7 @@ describe('markItemDone function', () => {
     const item = addItem("item 1");
     const result = markItemDone(item.id);
     expect(result).toBe("Item marked as done");
-    expect(items[0].status).toBe(true);
+    expect(getItems()[0].status).toBe(true);
   });
 });
 
@@ -92,10 +93,12 @@ describe('markAllItemsDone function', () => {
   it('should mark all items as done', () => {
     addItem("item 1");
     addItem("item 2");
+    addItem("item 3");
     const result = markAllItemsDone();
-    expect(result).toBe("All items marked as done");
-    for (let i = 0; i < items.length; i++) {
-      expect(items[i].status).toBe(true);
+    // console.log(getItems().length)
+    for (let i = 0; i < getItems().length; i++) {
+      expect(getItems()[i].status).toBe(true);
+      expect(result).toBe("All items marked as done");
     }
   });
 });
