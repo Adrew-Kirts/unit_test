@@ -29,7 +29,7 @@ Steps: input '84'
 Awaited result: Error message "Label is not text"
 
 Name: Check if label string surpasses 255 characters
-Description: Checks if string surpasses 255 characters
+Description: Returns an object with truncated label(string)
 Steps: Input string longer than 255 chars
 Awaited result: Returns object with string truncated at 255 chars and status(false)
 
@@ -57,13 +57,11 @@ function: deleteItem
 
 ```
 Name: Check if item exists 
-ID: 4
 Description: Returns error message when item doesn't exist 
 Steps: input non-existent item ID
 Awaited result: Error message "Item not found"
 
 Name: Check if item is deleted 
-ID: 5 
 Description: Deletes item from the list 
 Steps: input existing item ID 
 Awaited result: Item is removed from the list
@@ -91,45 +89,28 @@ function: editItem
 
 ```
 Name: Check if item exists 
-ID: 4
 Description: Returns error message when item doesn't exist 
 Steps: input non-existent item ID
 Awaited result: Error message "Item not found"
 
 Name: Check label has content
-ID: 1
 Description: Returns error message when label is empty
-Steps: input "" and click save button
+Steps: input ""
 Awaited result: Error message "Please add a message to your item
 
 Name: Check if new label is a string 
-ID: 3 
 Description: Returns error message when new label is not a string 
-Steps: input existing item ID and "84" as new label and click edit button 
+Steps: input existing item ID and "84" as new label
 Awaited result: Error message "Label is not text"
 
-Name: Check if new label string surpasses 255 characters
-ID: 3.1
-Description: Checks if string surpasses 255 characters
-Steps: Input string longer than 255 chars
-Awaited result: Returns true 
-
 Name: Check if label string surpasses 255 characters
-ID: 3.2
-Description: Checks if string surpasses 255 characters
-Steps: Input string shorter than 255 chars
-Awaited result: Returns false
-
-Name: Check if string is correctly truncated
-ID: 3.3
-Description: Assert function truncates string
+Description: Returns an object with truncated label(string)
 Steps: Input string longer than 255 chars
-Awaited result: Result is string of exactly 255 chars long 
+Awaited result: Returns object with string truncated at 255 chars and status(false)
 
 Name: Check if item is edited 
-ID: 5 
 Description: Edits item with new label 
-Steps: input existing item ID and new label and click edit button 
+Steps: input existing item ID and new label
 Awaited result: Item is edited with new label
 
 ```
@@ -182,4 +163,17 @@ Description: Marks all items as done
 Steps: click mark all items as done button 
 Awaited result: All items are marked as done
 
+```
+
+## How to launch tests
+
+Launch tests and file watcher in terminal
+```bash
+$ npm run test
+```
+
+Launch tests and file watcher UI
+(http://localhost:51204/__vitest__/#/)
+```bash
+$ npm run test:ui
 ```
